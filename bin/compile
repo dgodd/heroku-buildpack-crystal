@@ -50,7 +50,9 @@ cd $BUILD_DIR
 if [ -f shard.yml ]; then
   echo "-----> Installing Dependencies"
   export SHARDS_CACHE_PATH=${SHARDS_CACHE_PATH:-$CACHE_DIR/.shards}
-  export SHARDS_INSTALL_PATH=${SHARDS_INSTALL_PATH:-$INSTALL_DIR/lib}
+  export SHARDS_INSTALL_PATH=${SHARDS_INSTALL_PATH:-$CACHE_DIR/lib}
+  mkdir -p $SHARDS_CACHE_PATH
+  mkdir -p $SHARDS_INSTALL_PATH
   ls $SHARDS_CACHE_PATH
   ls $SHARDS_INSTALL_PATH
   $CRYSTAL_DIR/bin/crystal deps --production
