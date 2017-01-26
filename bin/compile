@@ -49,9 +49,13 @@ cd $BUILD_DIR
 
 if [ -f shard.yml ]; then
   echo "-----> Installing Dependencies"
-  SHARDS_CACHE_PATH=${SHARDS_CACHE_PATH:-$CACHE_DIR/.shards}
-  SHARDS_INSTALL_PATH=${SHARDS_INSTALL_PATH:-$INSTALL_DIR/lib}
+  export SHARDS_CACHE_PATH=${SHARDS_CACHE_PATH:-$CACHE_DIR/.shards}
+  export SHARDS_INSTALL_PATH=${SHARDS_INSTALL_PATH:-$INSTALL_DIR/lib}
+  ls $SHARDS_CACHE_PATH
+  ls $SHARDS_INSTALL_PATH
   $CRYSTAL_DIR/bin/crystal deps --production
+  ls $SHARDS_CACHE_PATH
+  ls $SHARDS_INSTALL_PATH
 
   if [ -f app.cr ]; then
     echo "-----> Compiling app.cr (using old behaviour, app.cr exists - ignoring shard.yml)"
